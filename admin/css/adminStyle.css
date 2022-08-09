@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+main {
+    padding: 40px 0;
+}
+
+.goodsEditor_item {
+    margin: 15px 0;
+}

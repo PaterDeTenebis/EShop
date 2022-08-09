@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+section.header {
+    margin-bottom: 50px;
+}
+.goodsList {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 100px;
+}
+
+.card {
+    width: 39%;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.miniCart {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.orderField {
+    margin-top: 50px;
+}
+
+.btn {
+    margin: 5px;
+}
+
+.descr {
+    max-height: 100px;
+    overflow-y: scroll;
+}
