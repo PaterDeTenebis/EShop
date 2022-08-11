@@ -1,11 +1,14 @@
 var cart = {}; //Корзина
 function init() {
   //отправляет запрос на core.php для загрузки товаров из базы
+  var hash = window.location.hash.substring(1);
+  console.log(hash);
 
   $.post(
     'admin/core.php',
     {
-      action: 'loadGoods',
+      action: 'loadSingleGoods',
+      id: hash,
     },
     goodsOutput,
   );
@@ -13,25 +16,28 @@ function init() {
 
 function goodsOutput(data) {
   //выводит товары на страницу из базы
-  data = JSON.parse(data);
-  console.log(data);
-  var output = '';
-  for (var key in data) {
-    output += '<div class="card text-white bg-dark mb-3" style="width: 18rem">';
-    output += '<img src="img/' + data[key].img + '" class="card-img-top" />';
+  if (data != 0) {
+    data = JSON.parse(data);
+    console.log(data);
+    var output = '';
+    output += '<div class="card text-white bg-dark mb-3" style="width: 90%; margin: 0-auto;">';
+    output += '<img src="img/' + data.img + '" class="card-img-top" />';
     output += '<div class="card-body">';
-    output += '<h5 class="card-title">' + data[key].name + '</h5>';
-    output += '<p class="card-text descr">' + data[key].description + '</p>';
-    output += '<p class="card-text price">' + data[key].price + '</p>';
-    output += `<a href="#" class="btn btn-primary add-to-cart" data-id="${key}">Add to cart</a>`;
-    output += `<a href="#" class="btn btn-outline-warning add-to-wishlist" data-id="${key}">&hearts;</a>`;
-    output += `<a href="goods.html#${key}" class="btn btn-outline-success">Details</a>`;
+    output += '<h5 class="card-title">' + data.name + '</h5>';
+    output += '<p class="card-text">' + data.description + '</p>';
+    output += '<p class="card-text price">' + data.price + '</p>';
+    output += `<a href="#" class="btn btn-primary add-to-cart" data-id="${data.id}">Add to cart</a>`;
+    output += `<a href="#" class="btn btn-outline-warning add-to-wishlist" data-id="${data.id}">&hearts;</a>`;
     output += '</div>';
     output += '</div>';
+    $('.goodsList').html(output);
+    $('.add-to-cart').on('click', addToCart);
+    $('.add-to-wishlist').on('click', addToWishlist);
+  } else {
+    $('.goodsList').html(
+      '<h3 style="text-align:center;">Sorry, there is no such item in our shop =(</h3>',
+    );
   }
-  $('.goodsList').html(output);
-  $('.add-to-cart').on('click', addToCart);
-  $('.add-to-wishlist').on('click', addToWishlist);
 }
 
 function addToWishlist() {
@@ -44,7 +50,6 @@ function addToWishlist() {
   var id = $(this).attr('data-id');
   wishlist[id] = 1;
   localStorage.setItem('wishlist', JSON.stringify(wishlist)); // сохраняет строчное значение корзины в локальном хранилище
-
 }
 
 function addToCart() {

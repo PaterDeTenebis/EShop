@@ -13,7 +13,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>E-shop | Cart</title>
+    <title>E-shop</title>
   </head>
   <body>
     <section class="header">
@@ -38,7 +38,7 @@
                 <a class="nav-link" href="index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Cart</a>
+                <a class="nav-link" href="cart.html">Cart</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="wishlist.html">Wish list</a>
@@ -50,34 +50,9 @@
     </section>
     <section class="content">
       <div class="container">
+        <div class="miniCart"></div>
         <main>
-          <div class="cart"></div>
-          <div class="orderField">
-            <h4>Form order</h4>
-            <small id="emailHelp" class="form-text text-muted"
-                  >We'll never share your personal data with anyone else.</small
-                >
-                <br>
-            
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email*</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" />
-                
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Name*</label>
-                <input type="text" class="form-control" id="ename" />
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Phone*</label>
-                <input type="text" class="form-control" id="ephone" />
-                
-              </div>
-              </div>
-
-              <button class="btn btn-primary sendOrder" id="sendOrder">Submit</button>
-            
-          </div>
+          <div class="goodsList"></div>
         </main>
       </div>
     </section>
@@ -100,6 +75,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="js/jquery.js"></script>
-    <script src="js/cart.js"></script>
+    <script src="js/goods.js"></script>
   </body>
 </html>
